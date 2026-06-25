@@ -355,7 +355,8 @@ int main(int argc, char *argv[])
 		} else if (options & OPT_M) {
 			rc = lk_dump_ctable(ctx, stdout);
 		} else if (options & OPT_T) {
-			rc = lk_dump_keymap2(ctx, stdout, table_shape, 0);
+			char numeric = getenv("LK_DUMP_NUMERIC") != NULL;
+			rc = lk_dump_keymap2(ctx, stdout, table_shape, numeric);
 			if (rc < 0)
 				goto fail;
 #ifdef KDGKBDIACR
